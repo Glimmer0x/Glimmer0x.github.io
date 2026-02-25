@@ -35,3 +35,21 @@
 - [x] Update About section with Future Research Interests (GRN, bioprinting)
 - [x] Update Research section description with future directions mention
 - [x] Fix transitionDelay + transition shorthand conflict in all components
+
+## Phase 4 — UX Fixes + Design Evolution (Computational Naturalism)
+
+### Design System
+- [x] Add forest green (oklch(0.32 0.09 140)) as second accent color to CSS variables
+- [x] Update Hero tagline to reflect dual AI + computational biology identity
+
+### Critical UX Fixes
+- [x] Fill Hero right side with organic network/cell structure illustration (gene regulatory network)
+- [x] Fix "SEND A MESSAGE" button (mailto link, correct GitHub URL to Glimmer0x, Scholar link)
+- [x] Fix Experience section alternating card layout (true left/right alternation with center spine)
+
+### High Priority UX Fixes
+- [x] Optimize navbar: remove redundant GITHUB item, add external GitHub icon link
+- [x] Add active section indicator to navbar on scroll (dot + color highlight)
+- [x] Blog preview shows up to 3 posts (getAllPosts().slice(0, 3))
+- [x] Add GitHub, Blog, and Google Scholar links to Footer
+- [x] Elevate "Future Research Directions" visual prominence (forest green card with left border)

@@ -1,30 +1,48 @@
 /*
- * Navbar Component — Quiet Luxury Minimalism
- * Minimal top navigation, text-only, no background
- * Subtle bottom border appears on scroll
+ * Navbar Component — Computational Naturalism
+ * Minimal top navigation with active section indicator
+ * GitHub as external icon link (not a nav item)
  */
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github } from "lucide-react";
 
 const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Research", href: "#research" },
-  { label: "Projects", href: "#projects" },
-  { label: "GitHub", href: "#github" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "#about", sectionId: "about" },
+  { label: "Experience", href: "#experience", sectionId: "experience" },
+  { label: "Research", href: "#research", sectionId: "research" },
+  { label: "Projects", href: "#projects", sectionId: "projects" },
+  { label: "Blog", href: "/blog", sectionId: "" },
+  { label: "Contact", href: "#contact", sectionId: "contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Active section detection
+      const sectionIds = navItems
+        .filter((item) => item.sectionId)
+        .map((item) => item.sectionId);
+
+      let current = "";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
+            current = id;
+          }
+        }
+      }
+      setActiveSection(current);
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -62,17 +80,41 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center gap-8 lg:gap-12">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <button
-                  onClick={() => handleNavClick(item.href)}
-                  className="font-body text-sm font-light tracking-[0.12em] uppercase text-[#1A1A1A]/70 hover:text-[#8B7355] transition-colors duration-400 underline-animate"
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
+          <ul className="hidden md:flex items-center gap-6 lg:gap-10">
+            {navItems.map((item) => {
+              const isActive = item.sectionId && activeSection === item.sectionId;
+              return (
+                <li key={item.label}>
+                  <button
+                    onClick={() => handleNavClick(item.href)}
+                    className={`relative font-body text-xs font-light tracking-[0.14em] uppercase transition-colors duration-400 underline-animate ${
+                      isActive
+                        ? "text-[#8B7355]"
+                        : "text-[#1A1A1A]/60 hover:text-[#8B7355]"
+                    }`}
+                  >
+                    {item.label}
+                    {/* Active dot indicator */}
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#8B7355]" />
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+
+            {/* GitHub external icon link */}
+            <li>
+              <a
+                href="https://github.com/Glimmer0x"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1A1A1A]/50 hover:text-[#8B7355] transition-colors duration-400"
+                aria-label="GitHub profile"
+              >
+                <Github size={16} />
+              </a>
+            </li>
           </ul>
 
           {/* Mobile Menu Button */}
@@ -107,12 +149,37 @@ export default function Navbar() {
             >
               <button
                 onClick={() => handleNavClick(item.href)}
-                className="font-display text-4xl font-light text-[#1A1A1A] hover:text-[#8B7355] transition-colors duration-400"
+                className={`font-display text-4xl font-light transition-colors duration-400 ${
+                  item.sectionId && activeSection === item.sectionId
+                    ? "text-[#8B7355]"
+                    : "text-[#1A1A1A] hover:text-[#8B7355]"
+                }`}
               >
                 {item.label}
               </button>
             </li>
           ))}
+          {/* GitHub in mobile menu */}
+          <li
+            style={{
+              transitionProperty: "transform, opacity",
+              transitionDuration: "0.5s, 0.5s",
+              transitionTimingFunction: "ease, ease",
+              transitionDelay: menuOpen ? `${navItems.length * 0.08}s` : "0s",
+              transform: menuOpen ? "translateY(0)" : "translateY(20px)",
+              opacity: menuOpen ? 1 : 0,
+            }}
+          >
+            <a
+              href="https://github.com/Glimmer0x"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 font-body text-sm tracking-[0.15em] uppercase text-[#1A1A1A]/50 hover:text-[#8B7355] transition-colors duration-400"
+            >
+              <Github size={16} />
+              <span>GitHub</span>
+            </a>
+          </li>
         </ul>
       </div>
     </>

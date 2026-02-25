@@ -43,14 +43,14 @@ const contactLinks = [
   {
     icon: <Github size={18} />,
     label: "GitHub",
-    value: "github.com/liangxi-liu",
-    href: "https://github.com/liangxi-liu",
+    value: "github.com/Glimmer0x",
+    href: "https://github.com/Glimmer0x",
   },
   {
     icon: <BookOpen size={18} />,
     label: "Google Scholar",
     value: "Scholar Profile",
-    href: "#",
+    href: "https://scholar.google.com/citations?user=LOsVJ_8AAAAJ&hl=en",
   },
 ];
 
@@ -81,7 +81,8 @@ export default function ContactSection() {
             <p className="font-body text-base md:text-lg font-light text-[#1A1A1A]/70 leading-[1.9] mb-8">
               I'm always open to discussing new opportunities, research collaborations,
               or interesting engineering challenges. Whether you're building something
-              ambitious or exploring ideas at the frontier of AI and systems — let's connect.
+              ambitious, exploring ideas at the frontier of AI and systems, or working at
+              the intersection of computation and biology — let's connect.
             </p>
 
             <div className="flex items-center gap-2 text-[#1A1A1A]/40 mb-12">

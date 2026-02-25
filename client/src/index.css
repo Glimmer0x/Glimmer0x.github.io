@@ -1,7 +1,7 @@
-/* 
- * Design System: Quiet Luxury Minimalism
- * Philosophy: Inspired by high-end fashion brands (The Row, Bottega Veneta)
- * Colors: Warm off-white (#FAFAF8), near-black (#1A1A1A), warm taupe gold (#8B7355)
+/*
+ * Design System: Computational Naturalism
+ * Philosophy: Quiet Luxury Minimalism evolved — engineering precision meets biological wonder
+ * Colors: Warm off-white (#FAFAF8), near-black (#1A1A1A), warm taupe gold (#8B7355), forest green (#2D5016)
  * Typography: Cormorant Garamond (serif display) + Jost (geometric sans-serif body)
  * Motion: Slow, elegant transitions (0.4s–0.6s ease)
  */
@@ -53,7 +53,7 @@
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Jost', system-ui, sans-serif;
   
-  /* Quiet Luxury palette */
+  /* Computational Naturalism palette */
   --ql-cream: oklch(0.985 0.006 80);
   --ql-warm-white: oklch(0.975 0.008 75);
   --ql-sand: oklch(0.88 0.018 75);
@@ -61,6 +61,10 @@
   --ql-gold: oklch(0.58 0.055 60);
   --ql-dark: oklch(0.18 0.008 60);
   --ql-near-black: oklch(0.13 0.006 60);
+  /* Forest green — biology / life science accent */
+  --cn-forest: oklch(0.32 0.09 140);
+  --cn-forest-light: oklch(0.48 0.1 140);
+  --cn-forest-pale: oklch(0.92 0.03 140);
 }
 
 :root {

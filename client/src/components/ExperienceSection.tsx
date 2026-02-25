@@ -1,7 +1,6 @@
 /*
- * ExperienceSection — Quiet Luxury Minimalism
- * Vertical timeline with company, role, highlights
- * Alternating left/right layout on desktop
+ * ExperienceSection — Computational Naturalism
+ * Vertical center-spine timeline with true alternating left/right cards
  */
 
 import { useEffect, useRef } from "react";
@@ -47,7 +46,7 @@ const experiences = [
     location: "New York, US",
     role: "Founding Engineer",
     period: "Mar. 2024 – Jun. 2024",
-    color: "#6B8B7A",
+    color: "#5A7A6A",
     highlights: [
       "Built crypto-native multimodal AI model for clients including **Coinbase**, **Near**, and **Go Plus** to identify blockchain transaction behaviors",
       "Developed petabyte-scale blockchain data pipelines for real-time crawling and processing of **billions of RTC requests**",
@@ -89,6 +88,108 @@ function HighlightText({ text }: { text: string }) {
   );
 }
 
+function ExperienceCard({
+  exp,
+  isLeft,
+  index,
+}: {
+  exp: (typeof experiences)[0];
+  isLeft: boolean;
+  index: number;
+}) {
+  const ref = useScrollReveal(0.1);
+
+  const card = (
+    <div
+      className="bg-[#FAFAF8] p-8 border border-[#C4B9A8]/40 hover:border-[#8B7355]/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(139,115,85,0.08)]"
+    >
+      {/* Header */}
+      <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+        <div>
+          <h3 className="font-display text-2xl font-light text-[#1A1A1A] mb-1">
+            {exp.company}
+          </h3>
+          <p className="font-body text-sm font-medium text-[#1A1A1A]/60">
+            {exp.role}
+          </p>
+        </div>
+        <div className="text-right shrink-0">
+          <p className="font-body text-xs tracking-wider uppercase mb-1" style={{ color: exp.color }}>
+            {exp.period}
+          </p>
+          <p className="font-body text-xs text-[#1A1A1A]/40">{exp.location}</p>
+        </div>
+      </div>
+
+      {/* Thin accent line */}
+      <div className="w-8 h-0.5 mb-6" style={{ backgroundColor: exp.color }} />
+
+      {/* Highlights */}
+      <ul className="space-y-3 mb-6">
+        {exp.highlights.map((h, j) => (
+          <li key={j} className="flex gap-3">
+            <span className="mt-2 w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: exp.color }} />
+            <p className="font-body text-sm font-light text-[#1A1A1A]/70 leading-relaxed">
+              <HighlightText text={h} />
+            </p>
+          </li>
+        ))}
+      </ul>
+
+      {/* Tags */}
+      <div className="flex flex-wrap gap-2">
+        {exp.tags.map((tag) => (
+          <span
+            key={tag}
+            className="font-body text-xs font-light tracking-wider px-3 py-1 border border-[#C4B9A8]/60 text-[#1A1A1A]/50"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <div
+      ref={ref}
+      className="fade-in-up relative"
+      style={{ transitionDelay: `${index * 0.1}s` }}
+    >
+      {/* Mobile: simple stack */}
+      <div className="md:hidden pl-10">
+        {/* Mobile timeline dot */}
+        <div
+          className="absolute left-0 top-6 w-3 h-3 rounded-full border-2 border-[#F5F0E8]"
+          style={{ backgroundColor: exp.color }}
+        />
+        {card}
+      </div>
+
+      {/* Desktop: true alternating layout */}
+      <div className="hidden md:grid md:grid-cols-[1fr_2px_1fr] md:gap-0 items-start">
+        {/* Left slot */}
+        <div className={`${isLeft ? "pr-12" : ""}`}>
+          {isLeft && card}
+        </div>
+
+        {/* Center spine + dot */}
+        <div className="relative flex justify-center">
+          <div
+            className="absolute top-6 w-3 h-3 rounded-full border-2 border-[#F5F0E8] -translate-x-1/2 left-1/2 z-10"
+            style={{ backgroundColor: exp.color }}
+          />
+        </div>
+
+        {/* Right slot */}
+        <div className={`${!isLeft ? "pl-12" : ""}`}>
+          {!isLeft && card}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ExperienceSection() {
   const headingRef = useScrollReveal();
 
@@ -106,102 +207,20 @@ export default function ExperienceSection() {
           </div>
         </div>
 
-        {/* Timeline */}
+        {/* Timeline container */}
         <div className="relative">
-          {/* Vertical spine */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-[#C4B9A8]/60 hidden sm:block" />
+          {/* Vertical spine — desktop only */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#C4B9A8]/50 hidden md:block -translate-x-1/2" />
+          {/* Vertical spine — mobile */}
+          <div className="absolute left-[5px] top-0 bottom-0 w-px bg-[#C4B9A8]/50 md:hidden" />
 
-          <div className="space-y-16 md:space-y-24">
-            {experiences.map((exp, i) => {
-              const isLeft = i % 2 === 0;
-              return (
-                <ExperienceCard key={i} exp={exp} isLeft={isLeft} index={i} />
-              );
-            })}
+          <div className="space-y-16 md:space-y-20">
+            {experiences.map((exp, i) => (
+              <ExperienceCard key={i} exp={exp} isLeft={i % 2 === 0} index={i} />
+            ))}
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function ExperienceCard({
-  exp,
-  isLeft,
-  index,
-}: {
-  exp: (typeof experiences)[0];
-  isLeft: boolean;
-  index: number;
-}) {
-  const ref = useScrollReveal(0.1);
-
-  return (
-    <div
-      ref={ref}
-      className={`fade-in-up relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16`}
-      style={{ transitionDelay: `${index * 0.1}s` }}
-    >
-      {/* Timeline dot */}
-      <div
-        className="absolute left-4 md:left-1/2 top-6 w-3 h-3 rounded-full -translate-x-1/2 border-2 border-[#FAFAF8] hidden sm:block"
-        style={{ backgroundColor: exp.color }}
-      />
-
-      {/* Content placement */}
-      <div className={`${isLeft ? "md:col-start-1 md:pr-12" : "md:col-start-2 md:pl-12"} sm:pl-10 md:pl-0`}>
-        <div
-          className="bg-[#FAFAF8] p-8 border border-[#C4B9A8]/40 hover:border-[#8B7355]/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(139,115,85,0.08)]"
-        >
-          {/* Header */}
-          <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-            <div>
-              <h3 className="font-display text-2xl font-light text-[#1A1A1A] mb-1">
-                {exp.company}
-              </h3>
-              <p className="font-body text-sm font-medium text-[#1A1A1A]/60">
-                {exp.role}
-              </p>
-            </div>
-            <div className="text-right shrink-0">
-              <p className="font-body text-xs tracking-wider text-[#8B7355] uppercase mb-1">
-                {exp.period}
-              </p>
-              <p className="font-body text-xs text-[#1A1A1A]/40">{exp.location}</p>
-            </div>
-          </div>
-
-          {/* Thin accent line */}
-          <div className="w-8 h-0.5 mb-6" style={{ backgroundColor: exp.color }} />
-
-          {/* Highlights */}
-          <ul className="space-y-3 mb-6">
-            {exp.highlights.map((h, j) => (
-              <li key={j} className="flex gap-3">
-                <span className="mt-2 w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: exp.color }} />
-                <p className="font-body text-sm font-light text-[#1A1A1A]/70 leading-relaxed">
-                  <HighlightText text={h} />
-                </p>
-              </li>
-            ))}
-          </ul>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {exp.tags.map((tag) => (
-              <span
-                key={tag}
-                className="font-body text-xs font-light tracking-wider px-3 py-1 border border-[#C4B9A8]/60 text-[#1A1A1A]/50"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Empty column for alternating layout */}
-      <div className={`hidden md:block ${isLeft ? "md:col-start-2" : "md:col-start-1 md:row-start-1"}`} />
-    </div>
   );
 }

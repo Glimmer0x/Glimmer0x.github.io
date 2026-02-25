@@ -112,8 +112,11 @@ export default function Blog() {
 function PostCard({ post, index, visible }: { post: BlogPost; index: number; visible: boolean }) {
   return (
     <div
-      className={`transition-all duration-700 border-b border-[#C4B9A8]/30 last:border-b-0`}
+      className="border-b border-[#C4B9A8]/30 last:border-b-0"
       style={{
+        transitionProperty: "opacity, transform",
+        transitionDuration: "700ms, 700ms",
+        transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         transitionDelay: `${0.1 + index * 0.08}s`,
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(20px)",

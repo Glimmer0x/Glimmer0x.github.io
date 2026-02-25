@@ -97,10 +97,12 @@ export default function Navbar() {
             <li
               key={item.label}
               style={{
+                transitionProperty: "transform, opacity",
+                transitionDuration: "0.5s, 0.5s",
+                transitionTimingFunction: "ease, ease",
                 transitionDelay: menuOpen ? `${i * 0.08}s` : "0s",
                 transform: menuOpen ? "translateY(0)" : "translateY(20px)",
                 opacity: menuOpen ? 1 : 0,
-                transition: "transform 0.5s ease, opacity 0.5s ease",
               }}
             >
               <button

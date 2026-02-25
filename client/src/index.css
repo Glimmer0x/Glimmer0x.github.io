@@ -197,11 +197,14 @@
   }
 
   /* Fade-in animation for scroll reveal */
+  /* Use longhand properties to avoid conflict with inline transitionDelay (React 19 warning) */
   .fade-in-up {
     opacity: 0;
     transform: translateY(28px);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-property: opacity, transform;
+    transition-duration: 0.7s, 0.7s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94), cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 0s;
   }
 
   .fade-in-up.visible {

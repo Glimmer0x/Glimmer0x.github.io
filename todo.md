@@ -34,3 +34,4 @@
 - [x] Add GitHub section with contribution calendar and profile link
 - [x] Update About section with Future Research Interests (GRN, bioprinting)
 - [x] Update Research section description with future directions mention
+- [x] Fix transitionDelay + transition shorthand conflict in all components

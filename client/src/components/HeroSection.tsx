@@ -56,11 +56,14 @@ export default function HeroSection() {
             </p>
 
             {/* Main Title */}
-            <h1 className="font-display text-[clamp(3.5rem,8vw,7rem)] font-light leading-[0.95] text-[#1A1A1A] mb-6">
+            <h1 className="font-display text-[clamp(3.5rem,8vw,7rem)] font-light leading-[0.95] text-[#1A1A1A] mb-3">
               Liangxi
               <br />
               <span className="italic text-[#8B7355]">Liu</span>
             </h1>
+            <p className="font-body text-base font-light tracking-[0.2em] text-[#1A1A1A]/40 mb-6">
+              Glimmer
+            </p>
 
             {/* Thin divider */}
             <div className="w-16 h-px bg-[#C4B9A8] mb-8" />
@@ -80,7 +83,8 @@ export default function HeroSection() {
             {/* Stats row */}
             <div className="flex gap-10 mb-12">
               {[
-                { num: "3", label: "Publications" },
+                { num: "7", label: "Publications" },
+                { num: "156", label: "Citations" },
                 { num: "2×", label: "Hackathon Champion" },
                 { num: "20M+", label: "Users Impacted" },
               ].map((stat) => (

@@ -12,6 +12,7 @@ const navItems = [
   { label: "Experience", href: "#experience" },
   { label: "Research", href: "#research" },
   { label: "Projects", href: "#projects" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -29,6 +30,10 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
+    if (href.startsWith("/")) {
+      window.location.href = href;
+      return;
+    }
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -51,7 +56,8 @@ export default function Navbar() {
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             className="font-display text-lg md:text-xl font-light tracking-wide text-[#1A1A1A] hover:text-[#8B7355] transition-colors duration-400"
           >
-            Liangxi Liu
+            <span>Liangxi Liu</span>
+            <span className="font-body text-xs font-light tracking-[0.18em] text-[#8B7355]/60 ml-2 hidden sm:inline">Glimmer</span>
           </a>
 
           {/* Desktop Nav */}

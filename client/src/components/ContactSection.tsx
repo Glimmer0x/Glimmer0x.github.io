@@ -63,7 +63,7 @@ export default function ContactSection() {
       <div className="container">
         {/* Section header */}
         <div ref={headingRef} className="fade-in-up mb-20">
-          <p className="section-label mb-4">06 — Contact</p>
+          <p className="section-label mb-4">08 — Contact</p>
           <div className="flex items-end gap-6">
             <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-light text-[#1A1A1A] leading-tight">
               Get in Touch

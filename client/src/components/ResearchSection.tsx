@@ -1,11 +1,12 @@
 /*
  * ResearchSection — Quiet Luxury Minimalism
- * Publications + Research Experience
- * Card-based layout with venue badges
+ * Publications sourced from Google Scholar (auto-synced data)
+ * Shows citation counts, venue badges, featured papers
  */
 
 import { useEffect, useRef } from "react";
-import { ExternalLink, BookOpen } from "lucide-react";
+import { ExternalLink, BookOpen, Quote } from "lucide-react";
+import { publications, scholarStats, type Publication } from "@/data/publications";
 
 function useScrollReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,72 +28,41 @@ function useScrollReveal(threshold = 0.1) {
   return ref;
 }
 
-const publications = [
-  {
-    title: "PFL-MD: A Privacy-Preserving Federated Learning Framework for Melanoma Diagnosis with Multiple Party Fully Homomorphic Encryption",
-    authors: "Liu, Liangxi, et al.",
-    venue: "IEEE BIBM 2025",
-    year: "2025",
-    type: "Conference",
-    color: "#7A6B8B",
-    tags: ["Federated Learning", "Privacy", "Medical AI", "Homomorphic Encryption"],
-  },
-  {
-    title: "FedLPA: One-shot Federated Learning with Layer-Wise Posterior Aggregation",
-    authors: "Liu, X., Liu, L., Ye, F., Shen, Y., Li, X., Jiang, L., & Li, J.",
-    venue: "NeurIPS 2024",
-    year: "2024",
-    type: "Conference",
-    color: "#6B8B7A",
-    tags: ["Federated Learning", "Bayesian Inference", "Neural Networks"],
-    highlight: true,
-  },
-  {
-    title: "A Bayesian Federated Learning Framework with Online Laplace Approximation",
-    authors: "Liu, Liangxi, et al.",
-    venue: "TPAMI 2023",
-    year: "2023",
-    type: "Journal",
-    color: "#8B7355",
-    tags: ["Bayesian Learning", "Laplace Approximation", "Non-IID Data"],
-    highlight: true,
-  },
-  {
-    title: "Evaluating Modern Approaches in 3D Scene Reconstruction: NeRF vs Gaussian-Based Methods",
-    authors: "Zhou, Yiming, et al.",
-    venue: "IEEE DOCS 2024",
-    year: "2024",
-    type: "Conference",
-    color: "#7A8B6B",
-    tags: ["NeRF", "3D Reconstruction", "Gaussian Splatting"],
-  },
-  {
-    title: "Brain Storm Optimized Swarm Collaboration for Bus Scheduling",
-    authors: "Liu, Liangxi, Siqing Ma, and Jun Steed Huang.",
-    venue: "IEEE VTC 2019",
-    year: "2019",
-    type: "Conference",
-    color: "#8B6B7A",
-    tags: ["Swarm Intelligence", "Optimization", "Transportation"],
-  },
-];
-
-const venueColors: Record<string, string> = {
-  "NeurIPS 2024": "#6B8B7A",
-  "TPAMI 2023": "#8B7355",
-  "IEEE BIBM 2025": "#7A6B8B",
-  "IEEE DOCS 2024": "#7A8B6B",
-  "IEEE VTC 2019": "#8B6B7A",
+const venueColorMap: Record<string, string> = {
+  "NeurIPS": "#6B8B7A",
+  "TPAMI": "#8B7355",
+  "BIBM": "#7A6B8B",
+  "DOCS": "#7A8B6B",
+  "VTC": "#8B6B7A",
+  "arXiv": "#6B7A8B",
 };
+
+function getVenueColor(venue: string): string {
+  for (const [key, color] of Object.entries(venueColorMap)) {
+    if (venue.toUpperCase().includes(key)) return color;
+  }
+  return "#8B7355";
+}
+
+function getVenueBadge(venue: string): string {
+  if (venue.includes("NeurIPS")) return "NeurIPS 2024";
+  if (venue.includes("TPAMI")) return "TPAMI 2023";
+  if (venue.includes("BIBM")) return "IEEE BIBM 2025";
+  if (venue.includes("DOCS")) return "IEEE DOCS 2024";
+  if (venue.includes("VTC")) return "IEEE VTC 2019";
+  if (venue.includes("arXiv")) return "arXiv 2025";
+  return venue.split(",")[0].trim().substring(0, 30);
+}
 
 export default function ResearchSection() {
   const headingRef = useScrollReveal();
+  const statsRef = useScrollReveal();
 
   return (
     <section id="research" className="py-28 md:py-36 bg-[#FAFAF8]">
       <div className="container">
         {/* Section header */}
-        <div ref={headingRef} className="fade-in-up mb-20">
+        <div ref={headingRef} className="fade-in-up mb-12">
           <p className="section-label mb-4">03 — Research</p>
           <div className="flex items-end gap-6">
             <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-light text-[#1A1A1A] leading-tight">
@@ -102,64 +72,107 @@ export default function ResearchSection() {
           </div>
           <p className="font-body text-base font-light text-[#1A1A1A]/50 mt-4 max-w-xl">
             Research focused on federated learning, Bayesian inference, and privacy-preserving machine learning.
+            Data synced from{" "}
+            <a
+              href={scholarStats.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#8B7355] underline-animate"
+            >
+              Google Scholar
+            </a>
+            .
           </p>
         </div>
 
+        {/* Scholar stats */}
+        <div ref={statsRef} className="fade-in-up mb-16">
+          <div className="flex flex-wrap gap-8 md:gap-16 py-8 border-y border-[#C4B9A8]/40">
+            {[
+              { value: scholarStats.totalCitations, label: "Total Citations" },
+              { value: scholarStats.hIndex, label: "h-index" },
+              { value: scholarStats.i10Index, label: "i10-index" },
+              { value: publications.length, label: "Publications" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-4xl font-light text-[#1A1A1A]">{stat.value}</p>
+                <p className="font-body text-xs tracking-[0.15em] uppercase text-[#8B7355]/70 mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Publications list */}
-        <div className="space-y-6">
+        <div className="space-y-5">
           {publications.map((pub, i) => (
             <PublicationCard key={i} pub={pub} index={i} />
           ))}
+        </div>
+
+        {/* Scholar link */}
+        <div className="mt-12 text-center">
+          <a
+            href={scholarStats.profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#8B7355] border border-[#C4B9A8] px-6 py-3 hover:border-[#8B7355] hover:bg-[#8B7355]/5 transition-all duration-400"
+          >
+            <BookOpen size={14} />
+            View Full Profile on Google Scholar
+          </a>
         </div>
       </div>
     </section>
   );
 }
 
-function PublicationCard({
-  pub,
-  index,
-}: {
-  pub: (typeof publications)[0];
-  index: number;
-}) {
+function PublicationCard({ pub, index }: { pub: Publication; index: number }) {
   const ref = useScrollReveal(0.1);
-  const venueColor = venueColors[pub.venue] || "#8B7355";
+  const venueColor = getVenueColor(pub.venue);
+  const badge = getVenueBadge(pub.venue);
 
   return (
     <div
       ref={ref}
       className="fade-in-up"
-      style={{ transitionDelay: `${index * 0.08}s` }}
+      style={{ transitionDelay: `${index * 0.07}s` }}
     >
-      <div
-        className={`group relative flex gap-6 p-6 md:p-8 border transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_4px_30px_rgba(139,115,85,0.08)] ${
-          pub.highlight
-            ? "border-[#C4B9A8]/80 bg-[#F5F0E8]/50"
+      <a
+        href={pub.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`group relative flex gap-5 p-6 md:p-7 border transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_4px_30px_rgba(139,115,85,0.08)] block ${
+          pub.featured
+            ? "border-[#C4B9A8]/80 bg-[#F5F0E8]/40"
             : "border-[#C4B9A8]/30 bg-transparent"
         }`}
       >
-        {/* Left accent */}
+        {/* Left accent bar */}
         <div
-          className="w-0.5 shrink-0 rounded-full"
-          style={{ backgroundColor: venueColor, minHeight: "100%" }}
+          className="w-0.5 shrink-0 rounded-full self-stretch"
+          style={{ backgroundColor: venueColor }}
         />
 
         <div className="flex-1 min-w-0">
-          {/* Venue badge + year */}
+          {/* Venue badge + citation count */}
           <div className="flex flex-wrap items-center gap-3 mb-3">
             <span
-              className="font-body text-xs font-medium tracking-[0.15em] uppercase px-2.5 py-1"
+              className="font-body text-xs font-medium tracking-[0.12em] uppercase px-2.5 py-1"
               style={{
                 color: venueColor,
                 backgroundColor: `${venueColor}15`,
                 border: `1px solid ${venueColor}30`,
               }}
             >
-              {pub.venue}
+              {badge}
             </span>
-            <span className="font-body text-xs text-[#1A1A1A]/30">{pub.type}</span>
-            {pub.highlight && (
+            {pub.citations > 0 && (
+              <span className="flex items-center gap-1 font-body text-xs text-[#1A1A1A]/40">
+                <Quote size={10} />
+                {pub.citations} citations
+              </span>
+            )}
+            {pub.featured && (
               <span className="font-body text-xs text-[#8B7355] flex items-center gap-1">
                 <BookOpen size={10} />
                 Featured
@@ -192,9 +205,9 @@ function PublicationCard({
 
         {/* External link icon */}
         <div className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-1">
-          <ExternalLink size={16} className="text-[#8B7355]" />
+          <ExternalLink size={15} className="text-[#8B7355]" />
         </div>
-      </div>
+      </a>
     </div>
   );
 }

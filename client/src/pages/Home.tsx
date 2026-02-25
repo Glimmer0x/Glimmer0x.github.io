@@ -13,6 +13,7 @@ import ResearchSection from "@/components/ResearchSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
+import BlogPreviewSection from "@/components/BlogPreviewSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
       <ResearchSection />
       <ProjectsSection />
       <SkillsSection />
+      <BlogPreviewSection />
       <ContactSection />
       <Footer />
     </div>

@@ -105,7 +105,7 @@ export default function AboutSection() {
             </p>
 
             {/* Quick facts */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6 mb-12">
               {[
                 { icon: <MapPin size={14} />, label: "Location", value: "San Jose, CA" },
                 { icon: <GraduationCap size={14} />, label: "Latest Degree", value: "M.S. NEU, 2024" },
@@ -118,6 +118,45 @@ export default function AboutSection() {
                   <p className="font-body text-sm font-light text-[#1A1A1A]">{fact.value}</p>
                 </div>
               ))}
+            </div>
+
+            {/* Future Research Interests */}
+            <div className="border-l-2 border-[#8B7355]/40 pl-6">
+              <p className="section-label mb-4">Future Research Directions</p>
+              <p className="font-body text-sm font-light text-[#1A1A1A]/60 leading-relaxed mb-5">
+                Beyond current work in federated learning and AI systems, I am drawn to the frontier
+                where computation meets biology — particularly in areas where data-driven methods
+                can unlock new understanding of life itself.
+              </p>
+              <div className="space-y-4">
+                {[
+                  {
+                    title: "Gene Regulatory Networks",
+                    desc: "Applying graph neural networks and causal inference to model transcription factor interactions and predict cellular state transitions at scale.",
+                    tag: "Computational Biology",
+                  },
+                  {
+                    title: "Bioprinting & Organ Engineering",
+                    desc: "Exploring AI-driven optimization of bioink formulations and scaffold architectures to accelerate the path toward functional tissue fabrication.",
+                    tag: "Biofabrication",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="group">
+                    <div className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#8B7355]/50 mt-2 shrink-0 group-hover:bg-[#8B7355] transition-colors duration-300" />
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <h4 className="font-display text-base font-light text-[#1A1A1A]">{item.title}</h4>
+                          <span className="font-body text-[10px] tracking-[0.12em] uppercase text-[#8B7355]/60 border border-[#8B7355]/20 px-2 py-0.5">
+                            {item.tag}
+                          </span>
+                        </div>
+                        <p className="font-body text-xs font-light text-[#1A1A1A]/50 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

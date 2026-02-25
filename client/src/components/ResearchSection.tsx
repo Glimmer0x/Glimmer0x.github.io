@@ -72,6 +72,7 @@ export default function ResearchSection() {
           </div>
           <p className="font-body text-base font-light text-[#1A1A1A]/50 mt-4 max-w-xl">
             Research focused on federated learning, Bayesian inference, and privacy-preserving machine learning.
+            Future directions include computational biology and AI-driven bioprinting.
             Data synced from{" "}
             <a
               href={scholarStats.profileUrl}

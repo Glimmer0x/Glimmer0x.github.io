@@ -1,7 +1,7 @@
 /*
  * Home Page — Quiet Luxury Minimalism
  * Liangxi Liu Personal Website
- * Sections: Hero → About → Experience → Research → Projects → Skills → Contact → Footer
+ * Sections: Hero → About → Experience → Research → Projects → Skills → GitHub → Blog → Contact → Footer
  */
 
 import Navbar from "@/components/Navbar";
@@ -12,8 +12,9 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ResearchSection from "@/components/ResearchSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
-import ContactSection from "@/components/ContactSection";
+import GitHubSection from "@/components/GitHubSection";
 import BlogPreviewSection from "@/components/BlogPreviewSection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <ResearchSection />
       <ProjectsSection />
       <SkillsSection />
+      <GitHubSection />
       <BlogPreviewSection />
       <ContactSection />
       <Footer />

@@ -28,3 +28,9 @@
 
 ## Bug Fixes
 - [x] Fix nested &lt;a&gt; tags in BlogPreviewSection, Blog, BlogPost (wouter Link + &lt;a&gt; anti-pattern)
+
+## Phase 3 — GitHub & Research Updates
+- [x] Add GitHub contribution heatmap component (Glimmer0x)
+- [x] Add GitHub section with contribution calendar and profile link
+- [x] Update About section with Future Research Interests (GRN, bioprinting)
+- [x] Update Research section description with future directions mention

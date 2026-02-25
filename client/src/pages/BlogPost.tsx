@@ -36,10 +36,11 @@ export default function BlogPostPage() {
         <div className="text-center">
           <p className="font-display text-6xl font-light text-[#C4B9A8] mb-4">404</p>
           <p className="font-body text-sm font-light text-[#1A1A1A]/40 mb-8">Post not found.</p>
-          <Link href="/blog">
-            <a className="font-body text-sm font-light text-[#8B7355] underline-animate">
-              ← Back to Blog
-            </a>
+          <Link
+            href="/blog"
+            className="font-body text-sm font-light text-[#8B7355] underline-animate"
+          >
+            ← Back to Blog
           </Link>
         </div>
       </div>
@@ -55,17 +56,19 @@ export default function BlogPostPage() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAF8]/95 backdrop-blur-sm border-b border-[#C4B9A8]/40">
         <div className="container flex items-center justify-between h-16 md:h-20">
-          <Link href="/blog">
-            <a className="flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#1A1A1A]/60 hover:text-[#8B7355] transition-colors duration-300">
-              <ArrowLeft size={14} />
-              Blog
-            </a>
+          <Link
+            href="/blog"
+            className="flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#1A1A1A]/60 hover:text-[#8B7355] transition-colors duration-300"
+          >
+            <ArrowLeft size={14} />
+            Blog
           </Link>
-          <Link href="/">
-            <a className="font-display text-lg font-light text-[#1A1A1A] hover:text-[#8B7355] transition-colors duration-300">
-              Liangxi Liu{" "}
-              <span className="font-body text-xs tracking-[0.18em] text-[#8B7355]/60">Glimmer</span>
-            </a>
+          <Link
+            href="/"
+            className="font-display text-lg font-light text-[#1A1A1A] hover:text-[#8B7355] transition-colors duration-300"
+          >
+            Liangxi Liu{" "}
+            <span className="font-body text-xs tracking-[0.18em] text-[#8B7355]/60">Glimmer</span>
           </Link>
           <div className="w-16" />
         </div>
@@ -80,11 +83,13 @@ export default function BlogPostPage() {
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-6">
               {post.tags.map((tag) => (
-                <Link key={tag} href={`/blog?tag=${encodeURIComponent(tag)}`}>
-                  <a className="flex items-center gap-1 font-body text-xs font-light tracking-[0.1em] uppercase text-[#8B7355]/70 hover:text-[#8B7355] transition-colors duration-300">
-                    <Tag size={9} />
-                    {tag}
-                  </a>
+                <Link
+                  key={tag}
+                  href={`/blog?tag=${encodeURIComponent(tag)}`}
+                  className="flex items-center gap-1 font-body text-xs font-light tracking-[0.1em] uppercase text-[#8B7355]/70 hover:text-[#8B7355] transition-colors duration-300"
+                >
+                  <Tag size={9} />
+                  {tag}
                 </Link>
               ))}
             </div>
@@ -120,11 +125,12 @@ export default function BlogPostPage() {
           <div
             className={`mt-16 pt-8 border-t border-[#C4B9A8]/40 transition-all duration-700 delay-200 ${visible ? "opacity-100" : "opacity-0"}`}
           >
-            <Link href="/blog">
-              <a className="flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#1A1A1A]/50 hover:text-[#8B7355] transition-colors duration-300 group">
-                <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
-                All Posts
-              </a>
+            <Link
+              href="/blog"
+              className="flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#1A1A1A]/50 hover:text-[#8B7355] transition-colors duration-300 group"
+            >
+              <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
+              All Posts
             </Link>
           </div>
         </div>

@@ -35,11 +35,12 @@ export default function Blog() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAF8]/95 backdrop-blur-sm border-b border-[#C4B9A8]/40">
         <div className="container flex items-center justify-between h-16 md:h-20">
-          <Link href="/">
-            <a className="flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#1A1A1A]/60 hover:text-[#8B7355] transition-colors duration-300">
-              <ArrowLeft size={14} />
-              Back
-            </a>
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#1A1A1A]/60 hover:text-[#8B7355] transition-colors duration-300"
+          >
+            <ArrowLeft size={14} />
+            Back
           </Link>
           <span className="font-display text-lg font-light text-[#1A1A1A]">
             Liangxi Liu{" "}
@@ -118,47 +119,48 @@ function PostCard({ post, index, visible }: { post: BlogPost; index: number; vis
         transform: visible ? "translateY(0)" : "translateY(20px)",
       }}
     >
-      <Link href={`/blog/${post.slug}`}>
-        <a className="group flex flex-col md:flex-row md:items-start gap-4 md:gap-10 py-10 hover:bg-[#F5F0E8]/30 transition-colors duration-400 -mx-4 px-4">
-          {/* Date */}
-          <div className="md:w-36 shrink-0">
-            <p className="font-body text-xs font-light tracking-[0.12em] uppercase text-[#1A1A1A]/35 mt-1">
-              {formatDate(post.date)}
-            </p>
-          </div>
+      <Link
+        href={`/blog/${post.slug}`}
+        className="group flex flex-col md:flex-row md:items-start gap-4 md:gap-10 py-10 hover:bg-[#F5F0E8]/30 transition-colors duration-400 -mx-4 px-4"
+      >
+        {/* Date */}
+        <div className="md:w-36 shrink-0">
+          <p className="font-body text-xs font-light tracking-[0.12em] uppercase text-[#1A1A1A]/35 mt-1">
+            {formatDate(post.date)}
+          </p>
+        </div>
 
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            <h2 className="font-display text-xl md:text-2xl font-light text-[#1A1A1A] leading-snug mb-3 group-hover:text-[#8B7355] transition-colors duration-400">
-              {post.title}
-            </h2>
-            <p className="font-body text-sm font-light text-[#1A1A1A]/55 leading-relaxed mb-4 max-w-2xl">
-              {post.excerpt}
-            </p>
-            <div className="flex flex-wrap items-center gap-4">
-              <span className="flex items-center gap-1.5 font-body text-xs text-[#1A1A1A]/35">
-                <Clock size={11} />
-                {post.readingTime} min read
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {post.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="flex items-center gap-1 font-body text-xs font-light text-[#8B7355]/60"
-                  >
-                    <Tag size={9} />
-                    {tag}
-                  </span>
-                ))}
-              </div>
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <h2 className="font-display text-xl md:text-2xl font-light text-[#1A1A1A] leading-snug mb-3 group-hover:text-[#8B7355] transition-colors duration-400">
+            {post.title}
+          </h2>
+          <p className="font-body text-sm font-light text-[#1A1A1A]/55 leading-relaxed mb-4 max-w-2xl">
+            {post.excerpt}
+          </p>
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="flex items-center gap-1.5 font-body text-xs text-[#1A1A1A]/35">
+              <Clock size={11} />
+              {post.readingTime} min read
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {post.tags.slice(0, 3).map((tag) => (
+                <span
+                  key={tag}
+                  className="flex items-center gap-1 font-body text-xs font-light text-[#8B7355]/60"
+                >
+                  <Tag size={9} />
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
+        </div>
 
-          {/* Arrow */}
-          <div className="hidden md:flex items-center self-center text-[#C4B9A8] group-hover:text-[#8B7355] group-hover:translate-x-1 transition-all duration-300 text-xl shrink-0">
-            →
-          </div>
-        </a>
+        {/* Arrow */}
+        <div className="hidden md:flex items-center self-center text-[#C4B9A8] group-hover:text-[#8B7355] group-hover:translate-x-1 transition-all duration-300 text-xl shrink-0">
+          →
+        </div>
       </Link>
     </div>
   );

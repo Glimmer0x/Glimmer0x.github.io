@@ -37,28 +37,29 @@ function BlogPostRow({ post, index }: { post: BlogPost; index: number }) {
       className="fade-in-up border-b border-[#C4B9A8]/30 last:border-b-0"
       style={{ transitionDelay: `${index * 0.1}s` }}
     >
-      <Link href={`/blog/${post.slug}`}>
-        <a className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8 hover:bg-[#F5F0E8]/30 transition-colors duration-400 -mx-4 px-4">
-          <div className="md:w-32 shrink-0">
-            <p className="font-body text-xs font-light tracking-[0.1em] uppercase text-[#1A1A1A]/30">
-              {formatDate(post.date)}
-            </p>
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-display text-lg md:text-xl font-light text-[#1A1A1A] group-hover:text-[#8B7355] transition-colors duration-400 leading-snug">
-              {post.title}
-            </h3>
-          </div>
-          <div className="flex items-center gap-4 shrink-0">
-            <span className="flex items-center gap-1.5 font-body text-xs text-[#1A1A1A]/30">
-              <Clock size={10} />
-              {post.readingTime} min
-            </span>
-            <span className="text-[#C4B9A8] group-hover:text-[#8B7355] group-hover:translate-x-1 transition-all duration-300">
-              →
-            </span>
-          </div>
-        </a>
+      <Link
+        href={`/blog/${post.slug}`}
+        className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-10 py-8 hover:bg-[#F5F0E8]/30 transition-colors duration-400 -mx-4 px-4"
+      >
+        <div className="md:w-32 shrink-0">
+          <p className="font-body text-xs font-light tracking-[0.1em] uppercase text-[#1A1A1A]/30">
+            {formatDate(post.date)}
+          </p>
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="font-display text-lg md:text-xl font-light text-[#1A1A1A] group-hover:text-[#8B7355] transition-colors duration-400 leading-snug">
+            {post.title}
+          </h3>
+        </div>
+        <div className="flex items-center gap-4 shrink-0">
+          <span className="flex items-center gap-1.5 font-body text-xs text-[#1A1A1A]/30">
+            <Clock size={10} />
+            {post.readingTime} min
+          </span>
+          <span className="text-[#C4B9A8] group-hover:text-[#8B7355] group-hover:translate-x-1 transition-all duration-300">
+            →
+          </span>
+        </div>
       </Link>
     </div>
   );
@@ -79,11 +80,12 @@ export default function BlogPreviewSection() {
               Blog
             </h2>
           </div>
-          <Link href="/blog">
-            <a className="hidden md:flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#8B7355] hover:gap-3 transition-all duration-300 mb-2">
-              All Posts
-              <ArrowRight size={14} />
-            </a>
+          <Link
+            href="/blog"
+            className="hidden md:flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#8B7355] hover:gap-3 transition-all duration-300 mb-2"
+          >
+            All Posts
+            <ArrowRight size={14} />
           </Link>
         </div>
 
@@ -96,11 +98,12 @@ export default function BlogPreviewSection() {
 
         {/* Mobile CTA */}
         <div className="mt-10 md:hidden">
-          <Link href="/blog">
-            <a className="flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#8B7355]">
-              All Posts
-              <ArrowRight size={14} />
-            </a>
+          <Link
+            href="/blog"
+            className="flex items-center gap-2 font-body text-sm font-light tracking-[0.1em] uppercase text-[#8B7355]"
+          >
+            All Posts
+            <ArrowRight size={14} />
           </Link>
         </div>
       </div>

@@ -25,3 +25,6 @@
 - [x] Add Blog entry on homepage (BlogPreviewSection)
 - [x] Write 3 sample blog posts in Markdown
 - [x] Style blog pages consistent with Quiet Luxury design
+
+## Bug Fixes
+- [x] Fix nested &lt;a&gt; tags in BlogPreviewSection, Blog, BlogPost (wouter Link + &lt;a&gt; anti-pattern)

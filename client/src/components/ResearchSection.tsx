@@ -104,7 +104,7 @@ export default function ResearchSection() {
         </div>
 
         {/* Publications list */}
-        <div className="space-y-5">
+        <div className="space-y-4">
           {publications.map((pub, i) => (
             <PublicationCard key={i} pub={pub} index={i} />
           ))}
@@ -144,8 +144,8 @@ function PublicationCard({ pub, index }: { pub: Publication; index: number }) {
         rel="noopener noreferrer"
         className={`group relative flex gap-5 p-6 md:p-7 border transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_4px_30px_rgba(139,115,85,0.08)] block ${
           pub.featured
-            ? "border-[#C4B9A8]/80 bg-[#F5F0E8]/40"
-            : "border-[#C4B9A8]/30 bg-transparent"
+            ? "border-[#C4B9A8]/80 bg-[#F5F0E8]/50 shadow-[0_2px_12px_rgba(139,115,85,0.05)]"
+            : "border-[#C4B9A8]/25 bg-transparent"
         }`}
       >
         {/* Left accent bar */}
@@ -174,7 +174,14 @@ function PublicationCard({ pub, index }: { pub: Publication; index: number }) {
               </span>
             )}
             {pub.featured && (
-              <span className="font-body text-xs text-[#8B7355] flex items-center gap-1">
+              <span
+                className="font-body text-xs flex items-center gap-1 px-2 py-0.5"
+                style={{
+                  color: "oklch(0.32 0.09 140)",
+                  backgroundColor: "oklch(0.32 0.09 140 / 0.08)",
+                  border: "1px solid oklch(0.32 0.09 140 / 0.25)",
+                }}
+              >
                 <BookOpen size={10} />
                 Featured
               </span>

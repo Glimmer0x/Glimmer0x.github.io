@@ -103,11 +103,11 @@ function SkillGroup({ group, index }: { group: (typeof skillGroups)[0]; index: n
       </div>
 
       {/* Skills */}
-      <div className="md:col-span-3 flex flex-wrap gap-2.5">
+      <div className="md:col-span-3 flex flex-wrap gap-2">
         {group.skills.map((skill) => (
           <span
             key={skill}
-            className="font-body text-sm font-light px-4 py-1.5 border border-[#C4B9A8]/50 text-[#1A1A1A]/70 hover:border-[#8B7355]/60 hover:text-[#8B7355] transition-colors duration-300"
+            className="font-body text-xs font-light px-3 py-1 border border-[#C4B9A8]/40 text-[#1A1A1A]/60 hover:border-[#8B7355]/50 hover:text-[#8B7355] transition-colors duration-300"
           >
             {skill}
           </span>

@@ -173,12 +173,24 @@ function ExperienceCard({
           {isLeft && card}
         </div>
 
-        {/* Center spine + dot */}
+        {/* Center spine + dot + connector */}
         <div className="relative flex justify-center">
           <div
-            className="absolute top-6 w-3 h-3 rounded-full border-2 border-[#F5F0E8] -translate-x-1/2 left-1/2 z-10"
-            style={{ backgroundColor: exp.color }}
+            className="absolute top-6 w-4 h-4 rounded-full border-2 border-[#F5F0E8] -translate-x-1/2 left-1/2 z-10 shadow-[0_0_0_3px] "
+            style={{ backgroundColor: exp.color, boxShadow: `0 0 0 3px ${exp.color}25` }}
           />
+          {/* Horizontal connector line to card */}
+          {isLeft ? (
+            <div
+              className="absolute top-[1.625rem] right-1/2 w-12 h-px"
+              style={{ backgroundColor: `${exp.color}50` }}
+            />
+          ) : (
+            <div
+              className="absolute top-[1.625rem] left-1/2 w-12 h-px"
+              style={{ backgroundColor: `${exp.color}50` }}
+            />
+          )}
         </div>
 
         {/* Right slot */}
@@ -210,7 +222,7 @@ export default function ExperienceSection() {
         {/* Timeline container */}
         <div className="relative">
           {/* Vertical spine — desktop only */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#C4B9A8]/50 hidden md:block -translate-x-1/2" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#C4B9A8]/70 hidden md:block -translate-x-1/2" />
           {/* Vertical spine — mobile */}
           <div className="absolute left-[5px] top-0 bottom-0 w-px bg-[#C4B9A8]/50 md:hidden" />
 

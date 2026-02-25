@@ -97,11 +97,11 @@ function parseFrontmatter(raw: string): { data: Record<string, unknown>; content
   return { data, content };
 }
 
-// Parse and cache all posts
+// Parse and cache all posts (disable cache in dev for HMR)
 let _posts: BlogPost[] | null = null;
 
 export function getAllPosts(): BlogPost[] {
-  if (_posts) return _posts;
+  if (_posts && import.meta.env.PROD) return _posts;
 
   _posts = Object.entries(postModules)
     .map(([path, raw]) => {

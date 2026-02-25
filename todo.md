@@ -53,3 +53,22 @@
 - [x] Blog preview shows up to 3 posts (getAllPosts().slice(0, 3))
 - [x] Add GitHub, Blog, and Google Scholar links to Footer
 - [x] Elevate "Future Research Directions" visual prominence (forest green card with left border)
+
+## Phase 5 — UX Review Fixes (Full Pass)
+
+### High Priority
+- [x] Hero: Remove/fix gray semicircle geometry overlapping the network illustration
+- [x] Research: Add external links (arXiv/DOI) to all paper cards
+- [x] Blog preview: Show 3 posts (HMR cache fix)
+
+### Medium Priority
+- [x] Hero: Increase "GLIMMER" text contrast (bronze color, font-medium)
+- [x] Experience: Stronger spine + horizontal connector lines to cards
+- [x] GitHub: Reduced section padding (py-28 → py-20)
+- [x] Research: Featured papers have forest green badge + stronger background
+- [x] Projects: Added hover View link with ExternalLink icon
+
+### Low Priority
+- [x] Skills: Reduced tag size (text-xs, smaller padding)
+- [x] Footer: Simplified to Blog/GitHub/Scholar + AI · Systems · Computational Biology tagline
+- [x] Design: Forest green in Research Featured badge + GitHub section description

@@ -5,7 +5,7 @@
  */
 
 import { useEffect, useRef } from "react";
-import { Trophy, Zap, Shield, Search } from "lucide-react";
+import { Trophy, Zap, Shield, Search, ExternalLink } from "lucide-react";
 
 const PROJECT_BG =
   "https://private-us-east-1.manuscdn.com/sessionFile/Dz03kWw4HIBPFF5aPsEq1Q/sandbox/Y8vR1OAedMNRmcCVev166k-img-3_1772031316000_na1fn_cHJvamVjdC1iZw.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvRHowM2tXdzRISUJQRkY1YVBzRXExUS9zYW5kYm94L1k4dlIxT0FlZE1OUm1jQ1ZldjE2NmstaW1nLTNfMTc3MjAzMTMxNjAwMF9uYTFmbl9jSEp2YW1WamRDMWlady5wbmc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=UvkHnxxS7-YIJFBCDDS0E-T9q7UBWDy70L~ZF4huZpbzdgBZikQ600nQYLhgfdNPATiIuNddNY6R5YoqBYyaitdT3KmJ6sTZrsq3DL7ApA82DThQHXCN~23fWu9-MvI2emig3QNt10YlGC3xVfMHWYy3WTCpQvbOFGVPGoLJdLbUBddbFqtrqyg-FgsCLY2dN0bFJQRt-dnr4NfOPy4XWBICgK3~5EUmd0GuuiVL~kauUFse5Sq86X-H9nMrlM7hC3MseNs~CYLZzKZCfv2hf5xB7~tYh9LdNy1nwx-VTC0uT6RPRSsfUL16H54DbG6L3l~P3UfSQneYHjH7pXp14w__";
@@ -29,6 +29,13 @@ function useScrollReveal(threshold = 0.1) {
   }, [threshold]);
   return ref;
 }
+
+const projectLinks: Record<string, string> = {
+  "Fuzzy Search Engine": "https://github.com/Glimmer0x",
+  "Blockchain Fraud Detection": "https://github.com/Glimmer0x",
+  "AI Governance Platform": "https://github.com/Glimmer0x",
+  "ETH Hackathon Projects": "https://github.com/Glimmer0x",
+};
 
 const projects = [
   {
@@ -197,16 +204,29 @@ function ProjectCard({
             ))}
           </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="font-body text-xs font-light tracking-wide px-2.5 py-0.5 border border-[#C4B9A8]/50 text-[#1A1A1A]/45"
-              >
-                {tag}
-              </span>
-            ))}
+          {/* Tags + Link */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mt-auto pt-2">
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="font-body text-xs font-light tracking-wide px-2.5 py-0.5 border border-[#C4B9A8]/50 text-[#1A1A1A]/45"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <a
+              href={projectLinks[project.title] ?? "https://github.com/Glimmer0x"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 flex items-center gap-1.5 font-body text-xs font-light tracking-[0.1em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ color: project.color }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              View
+              <ExternalLink size={11} />
+            </a>
           </div>
         </div>
       </div>

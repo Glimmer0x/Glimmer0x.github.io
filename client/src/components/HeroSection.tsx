@@ -61,7 +61,7 @@ export default function HeroSection() {
             </h1>
 
             {/* English name — more prominent */}
-            <p className="font-body text-sm font-light tracking-[0.3em] text-[#1A1A1A]/50 mb-6 uppercase">
+            <p className="font-body text-sm font-medium tracking-[0.35em] text-[#8B7355] mb-6 uppercase">
               Glimmer
             </p>
 
@@ -131,10 +131,13 @@ export default function HeroSection() {
             className="lg:col-span-5 flex justify-center lg:justify-end items-center fade-in-up"
           >
             <div className="relative w-full max-w-sm lg:max-w-none">
-              {/* Subtle green accent ring behind image */}
+              {/* Subtle green accent arc — organic, not geometric */}
               <div
-                className="absolute -top-6 -right-6 w-48 h-48 rounded-full pointer-events-none opacity-10"
-                style={{ background: "oklch(0.32 0.09 140)" }}
+                className="absolute -top-4 -right-4 w-32 h-32 pointer-events-none opacity-15"
+                style={{
+                  borderRadius: "60% 40% 70% 30% / 50% 60% 40% 50%",
+                  border: "1.5px solid oklch(0.32 0.09 140)",
+                }}
               />
               {/* Corner accent — gold */}
               <div className="absolute -bottom-4 -left-4 w-20 h-20 border border-[#8B7355]/25 pointer-events-none" />

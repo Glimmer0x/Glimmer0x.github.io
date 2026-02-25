@@ -54,7 +54,7 @@ export default function GitHubSection() {
   const calendarRef = useScrollReveal(0.05);
 
   return (
-    <section id="github" className="py-28 md:py-36 bg-[#F5F0E8]">
+    <section id="github" className="py-20 md:py-28 bg-[#F5F0E8]">
       <div className="container">
         {/* Section header */}
         <div ref={headingRef} className="fade-in-up mb-16">
@@ -79,6 +79,8 @@ export default function GitHubSection() {
           </div>
           <p className="font-body text-base font-light text-[#1A1A1A]/50 mt-4 max-w-xl">
             Contributions across federated learning research, blockchain infrastructure, and AI tooling.
+            Exploring{" "}
+            <span style={{ color: "oklch(0.32 0.09 140)" }}>computational biology</span> and bioprinting.
           </p>
         </div>
 

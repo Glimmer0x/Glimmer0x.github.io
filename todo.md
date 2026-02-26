@@ -96,3 +96,7 @@
 - [x] Education entries: minimal (school + degree + dates + note only)
 - [x] Fix timeline dot alignment (centered on spine, work=3px dot, edu=2px muted dot)
 - [x] Reorder Navbar: Blog → Research → Projects → Timeline → Exploring → About → Contact
+
+## Phase 9 — Timeline Dot Alignment Fix
+- [x] Refactor TimelineSection to use CSS Grid 3-column layout (1fr 32px 1fr) for precise dot centering
+- [x] Verified via DevTools: all 6 dots at x=638, spine at x=638 (perfect alignment)

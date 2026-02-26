@@ -3,6 +3,11 @@
  * Single chronological timeline merging work experience and education
  * Work entries: collapsible highlights | Education entries: minimal (school + degree + period)
  * Alternating left/right layout on desktop, single column on mobile
+ *
+ * Alignment fix: the center spine is at left-1/2.
+ * Each row uses a 3-column grid: [left-content] [dot-column] [right-content]
+ * The dot column is exactly w-4 (16px) and the dot is centered inside it with mx-auto.
+ * The spine is positioned at left-1/2 of the outer container, which equals the center of the dot column.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -138,11 +143,10 @@ function HighlightText({ text }: { text: string }) {
   );
 }
 
-function WorkCard({ entry, index, isLeft }: { entry: Extract<TimelineEntry, { type: "work" }>; index: number; isLeft: boolean }) {
-  const ref = useScrollReveal(0.05);
+function WorkCard({ entry }: { entry: Extract<TimelineEntry, { type: "work" }> }) {
   const [expanded, setExpanded] = useState(false);
 
-  const card = (
+  return (
     <div
       className={`border border-[#C4B9A8]/40 bg-[#FAFAF8] cursor-pointer transition-all duration-300 ${
         expanded ? "border-[#8B7355]/30 shadow-[0_4px_20px_rgba(139,115,85,0.07)]" : "hover:border-[#C4B9A8]/70"
@@ -195,26 +199,11 @@ function WorkCard({ entry, index, isLeft }: { entry: Extract<TimelineEntry, { ty
       </div>
     </div>
   );
-
-  return (
-    <div ref={ref} className="fade-in-up relative flex items-start w-full" style={{ transitionDelay: `${index * 0.1}s` }}>
-      {/* Left slot */}
-      <div className="flex-1 pr-8">{isLeft ? card : null}</div>
-      {/* Center dot — perfectly centered on spine */}
-      <div className="shrink-0 w-4 flex justify-center pt-5">
-        <div className="w-3 h-3 rounded-full border-2 border-[#F5F0E8] z-10 ring-1 ring-[#C4B9A8]/60" style={{ backgroundColor: entry.color }} />
-      </div>
-      {/* Right slot */}
-      <div className="flex-1 pl-8">{!isLeft ? card : null}</div>
-    </div>
-  );
 }
 
-function EduCard({ entry, index, isLeft }: { entry: Extract<TimelineEntry, { type: "education" }>; index: number; isLeft: boolean }) {
-  const ref = useScrollReveal(0.05);
-
-  const card = (
-    <div className="py-3 px-4 border-l-2 border-[#C4B9A8]/50" style={{ borderLeftColor: "#C4B9A8" }}>
+function EduCard({ entry }: { entry: Extract<TimelineEntry, { type: "education" }> }) {
+  return (
+    <div className="py-3 px-4 border-l-2" style={{ borderLeftColor: "#C4B9A8" }}>
       <div className="flex items-start gap-2">
         <GraduationCap size={13} className="text-[#C4B9A8] mt-0.5 shrink-0" />
         <div>
@@ -233,17 +222,68 @@ function EduCard({ entry, index, isLeft }: { entry: Extract<TimelineEntry, { typ
       </div>
     </div>
   );
+}
+
+/**
+ * Desktop timeline row.
+ *
+ * Layout: 3 equal-ish columns using CSS grid.
+ *   [left-content (1fr)] [dot-column (32px)] [right-content (1fr)]
+ *
+ * The spine is an absolutely-positioned element at left-50% of the outer wrapper,
+ * which lands exactly in the middle of the 32px dot column.
+ * The dot itself is centered inside the dot column with mx-auto.
+ * We use `pt-5` (20px) for work cards and `pt-3` (12px) for edu cards so the dot
+ * sits near the top of the card rather than floating in the middle of empty space.
+ */
+function TimelineRow({
+  entry,
+  index,
+  isLeft,
+}: {
+  entry: TimelineEntry;
+  index: number;
+  isLeft: boolean;
+}) {
+  const ref = useScrollReveal(0.05);
+  const isWork = entry.type === "work";
+
+  // Dot offset from top: align with the first line of the card header.
+  // Work card has 20px top padding + color bar (2px) + 12px margin = ~34px before company name.
+  // We use pt-[22px] so the dot center sits roughly at the company name baseline.
+  // Edu card has 12px top padding, so pt-[14px] aligns with the school name.
+  const dotTopClass = isWork ? "pt-[22px]" : "pt-[14px]";
+
+  const dotEl = isWork ? (
+    // Work: filled colored circle with ring
+    <div
+      className="w-3 h-3 rounded-full border-2 border-[#F5F0E8] z-10 ring-1 ring-[#C4B9A8]/60 mx-auto"
+      style={{ backgroundColor: (entry as Extract<TimelineEntry, { type: "work" }>).color }}
+    />
+  ) : (
+    // Education: smaller muted circle
+    <div className="w-2 h-2 rounded-full bg-[#C4B9A8] z-10 mx-auto" />
+  );
 
   return (
-    <div ref={ref} className="fade-in-up relative flex items-start w-full" style={{ transitionDelay: `${index * 0.1}s` }}>
-      {/* Left slot */}
-      <div className="flex-1 pr-8">{isLeft ? card : null}</div>
-      {/* Center dot — small, muted */}
-      <div className="shrink-0 w-4 flex justify-center pt-3">
-        <div className="w-2 h-2 rounded-full bg-[#C4B9A8] z-10" />
+    <div
+      ref={ref}
+      className="fade-in-up"
+      style={{ transitionDelay: `${index * 0.08}s` }}
+    >
+      {/* 3-column grid: left | dot | right */}
+      <div className="grid items-start" style={{ gridTemplateColumns: "1fr 32px 1fr" }}>
+        {/* Left slot */}
+        <div className="pr-6">{isLeft ? (isWork ? <WorkCard entry={entry as Extract<TimelineEntry, { type: "work" }>} /> : <EduCard entry={entry as Extract<TimelineEntry, { type: "education" }>} />) : null}</div>
+
+        {/* Dot column — centered on the spine */}
+        <div className={`flex flex-col items-center ${dotTopClass}`}>
+          {dotEl}
+        </div>
+
+        {/* Right slot */}
+        <div className="pl-6">{!isLeft ? (isWork ? <WorkCard entry={entry as Extract<TimelineEntry, { type: "work" }>} /> : <EduCard entry={entry as Extract<TimelineEntry, { type: "education" }>} />) : null}</div>
       </div>
-      {/* Right slot */}
-      <div className="flex-1 pl-8">{!isLeft ? card : null}</div>
     </div>
   );
 }
@@ -278,16 +318,12 @@ export default function TimelineSection() {
 
         {/* Desktop: alternating timeline */}
         <div className="relative hidden md:block">
-          {/* Vertical spine — centered */}
+          {/* Vertical spine — at exactly left-1/2, which is the center of the 32px dot column */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#C4B9A8]/35 -translate-x-1/2" />
           <div className="space-y-3">
-            {timeline.map((entry, i) =>
-              entry.type === "work" ? (
-                <WorkCard key={`${entry.company}-${i}`} entry={entry} index={i} isLeft={i % 2 === 0} />
-              ) : (
-                <EduCard key={`${entry.school}-${i}`} entry={entry} index={i} isLeft={i % 2 === 0} />
-              )
-            )}
+            {timeline.map((entry, i) => (
+              <TimelineRow key={i} entry={entry} index={i} isLeft={i % 2 === 0} />
+            ))}
           </div>
         </div>
 
@@ -296,7 +332,7 @@ export default function TimelineSection() {
           {timeline.map((entry, i) => {
             if (entry.type === "education") {
               return (
-                <div key={`${entry.school}-${i}`} className="border-l-2 border-[#C4B9A8]/50 pl-4 py-2">
+                <div key={i} className="border-l-2 border-[#C4B9A8]/50 pl-4 py-2">
                   <div className="flex items-start gap-2">
                     <GraduationCap size={13} className="text-[#C4B9A8] mt-0.5 shrink-0" />
                     <div>
@@ -317,7 +353,7 @@ export default function TimelineSection() {
               );
             }
             return (
-              <MobileWorkCard key={`${entry.company}-${i}`} entry={entry} />
+              <MobileWorkCard key={i} entry={entry} />
             );
           })}
         </div>
@@ -338,27 +374,31 @@ function MobileWorkCard({ entry }: { entry: Extract<TimelineEntry, { type: "work
         <div className="flex items-start justify-between gap-3 mb-3">
           <div>
             <h3 className="font-display text-base font-light text-[#1A1A1A] leading-tight mb-0.5">{entry.company}</h3>
-            <p className="font-body text-xs text-[#1A1A1A]/50">{entry.role}</p>
+            <p className="font-body text-xs font-light text-[#1A1A1A]/50">{entry.role}</p>
           </div>
-          <div className="shrink-0 text-right">
+          <div className="shrink-0 flex flex-col items-end gap-1">
             <p className="font-body text-[10px] tracking-wider uppercase" style={{ color: entry.color }}>{entry.period}</p>
             <p className="font-body text-[10px] text-[#1A1A1A]/35">{entry.location}</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-1.5 mb-3">
           {entry.tags.map((tag) => (
-            <span key={tag} className="font-body text-[10px] px-2 py-0.5 border border-[#C4B9A8]/50 text-[#1A1A1A]/45">{tag}</span>
+            <span key={tag} className="font-body text-[10px] font-light tracking-wider px-2 py-0.5 border border-[#C4B9A8]/50 text-[#1A1A1A]/45">
+              {tag}
+            </span>
           ))}
         </div>
         <div className="flex items-center gap-1.5">
           <ChevronDown size={12} className={`text-[#C4B9A8] transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} />
-          <span className="font-body text-[10px] text-[#1A1A1A]/30">{expanded ? "collapse" : "expand"}</span>
+          <span className="font-body text-[10px] text-[#1A1A1A]/30 tracking-wide">
+            {expanded ? "collapse" : "expand"}
+          </span>
         </div>
         <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: expanded ? "600px" : "0px" }}>
-          <div className="border-t border-[#C4B9A8]/30 pt-3 mt-3">
-            <ul className="space-y-2">
+          <div className="border-t border-[#C4B9A8]/30 pt-4 mt-3">
+            <ul className="space-y-2.5">
               {entry.highlights.map((h, j) => (
-                <li key={j} className="flex gap-2">
+                <li key={j} className="flex gap-2.5">
                   <span className="mt-[7px] w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: entry.color }} />
                   <p className="font-body text-xs font-light text-[#1A1A1A]/60 leading-relaxed">
                     <HighlightText text={h} />

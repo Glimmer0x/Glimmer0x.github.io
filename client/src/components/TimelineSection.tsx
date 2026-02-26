@@ -306,35 +306,55 @@ export default function TimelineSection() {
           </div>
         </div>
 
-        {/* Mobile: single column */}
-        <div className="space-y-3 md:hidden">
-          {timeline.map((entry, i) => {
-            if (entry.type === "education") {
-              const edu = entry as EduEntry;
-              return (
-                <div key={i} className="border-l-2 pl-4 py-2" style={{ borderLeftColor: edu.color + "80" }}>
-                  <div className="flex items-start gap-2">
-                    <GraduationCap size={13} style={{ color: edu.color }} className="mt-0.5 shrink-0" />
-                    <div>
-                      <p className="font-display text-base font-light text-[#1A1A1A]">{edu.school}</p>
-                      <p className="font-body text-xs text-[#1A1A1A]/50 mt-0.5">{edu.degree}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="font-body text-[10px]" style={{ color: edu.color }}>{edu.period}</span>
-                        {edu.note && (
-                          <>
-                            <span className="text-[#C4B9A8] text-[10px]">·</span>
-                            <span className="font-body text-[10px] text-[#1A1A1A]/40">{edu.note}</span>
-                          </>
-                        )}
+        {/* Mobile: single-column timeline with continuous left spine */}
+        <div className="relative md:hidden">
+          {/* Continuous vertical spine: left-[15px] = dot center position */}
+          <div className="absolute left-[15px] top-0 bottom-0 w-px bg-[#C4B9A8]/40" />
+          <div className="space-y-3">
+            {timeline.map((entry, i) => {
+              if (entry.type === "education") {
+                const edu = entry as EduEntry;
+                return (
+                  <div key={i} className="relative pl-10">
+                    {/* Dot centered on spine: left-[15px] + -translate-x-1/2 */}
+                    <div
+                      className="absolute left-[15px] top-[14px] w-2 h-2 rounded-full border-2 border-[#F5F0E8] -translate-x-1/2 z-10"
+                      style={{ backgroundColor: edu.color + "99" }}
+                    />
+                    <div className="py-2">
+                      <div className="flex items-start gap-2">
+                        <GraduationCap size={13} style={{ color: edu.color }} className="mt-0.5 shrink-0" />
+                        <div>
+                          <p className="font-display text-base font-light text-[#1A1A1A]">{edu.school}</p>
+                          <p className="font-body text-xs text-[#1A1A1A]/50 mt-0.5">{edu.degree}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="font-body text-[10px]" style={{ color: edu.color }}>{edu.period}</span>
+                            {edu.note && (
+                              <>
+                                <span className="text-[#C4B9A8] text-[10px]">·</span>
+                                <span className="font-body text-[10px] text-[#1A1A1A]/40">{edu.note}</span>
+                              </>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+                );
+              }
+              const work = entry as WorkEntry;
+              return (
+                <div key={i} className="relative pl-10">
+                  {/* Dot centered on spine: left-[15px] + -translate-x-1/2 */}
+                  <div
+                    className="absolute left-[15px] top-[14px] w-3 h-3 rounded-full border-2 border-[#F5F0E8] ring-1 ring-[#C4B9A8]/60 -translate-x-1/2 z-10"
+                    style={{ backgroundColor: work.color }}
+                  />
+                  <MobileWorkCard entry={work} />
                 </div>
               );
-            }
-            const work = entry as WorkEntry;
-            return <MobileWorkCard key={i} entry={work} />;
-          })}
+            })}
+          </div>
         </div>
       </div>
     </section>

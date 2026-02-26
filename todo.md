@@ -107,3 +107,8 @@
 
 ## Phase 11 — About Section Education Dot Fix
 - [x] Fix AboutSection Education dot: -left-8 -translate-x-1/2 → dot center at x=686, spine center at x=686.5 (0.5px sub-pixel, visually perfect)
+
+## Phase 12 — Mobile Timeline Fix
+- [x] Fix mobile Timeline: add continuous left spine + dot for every entry (work + education)
+- [x] Mobile: use relative container + absolute left spine, each row has absolute dot centered on spine
+- [x] Verified via 5 reviews: spine visible, dots aligned, no gaps between entries

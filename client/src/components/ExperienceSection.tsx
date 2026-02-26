@@ -1,9 +1,11 @@
 /*
- * ExperienceSection — Computational Naturalism
- * Vertical center-spine timeline with true alternating left/right cards
+ * ExperienceSection — Compact two-column grid
+ * Default: collapsed (shows role, company, period, tags only)
+ * Expanded: shows bullet highlights on click
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 function useScrollReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -77,9 +79,7 @@ function HighlightText({ text }: { text: string }) {
     <span>
       {parts.map((part, i) =>
         i % 2 === 1 ? (
-          <strong key={i} className="font-medium text-[#1A1A1A]">
-            {part}
-          </strong>
+          <strong key={i} className="font-medium text-[#1A1A1A]">{part}</strong>
         ) : (
           <span key={i}>{part}</span>
         )
@@ -88,114 +88,86 @@ function HighlightText({ text }: { text: string }) {
   );
 }
 
-function ExperienceCard({
-  exp,
-  isLeft,
-  index,
-}: {
-  exp: (typeof experiences)[0];
-  isLeft: boolean;
-  index: number;
-}) {
+function ExperienceCard({ exp, index }: { exp: (typeof experiences)[0]; index: number }) {
   const ref = useScrollReveal(0.1);
-
-  const card = (
-    <div
-      className="bg-[#FAFAF8] p-8 border border-[#C4B9A8]/40 hover:border-[#8B7355]/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(139,115,85,0.08)]"
-    >
-      {/* Header */}
-      <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-        <div>
-          <h3 className="font-display text-2xl font-light text-[#1A1A1A] mb-1">
-            {exp.company}
-          </h3>
-          <p className="font-body text-sm font-medium text-[#1A1A1A]/60">
-            {exp.role}
-          </p>
-        </div>
-        <div className="text-right shrink-0">
-          <p className="font-body text-xs tracking-wider uppercase mb-1" style={{ color: exp.color }}>
-            {exp.period}
-          </p>
-          <p className="font-body text-xs text-[#1A1A1A]/40">{exp.location}</p>
-        </div>
-      </div>
-
-      {/* Thin accent line */}
-      <div className="w-8 h-0.5 mb-6" style={{ backgroundColor: exp.color }} />
-
-      {/* Highlights */}
-      <ul className="space-y-3 mb-6">
-        {exp.highlights.map((h, j) => (
-          <li key={j} className="flex gap-3">
-            <span className="mt-2 w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: exp.color }} />
-            <p className="font-body text-sm font-light text-[#1A1A1A]/70 leading-relaxed">
-              <HighlightText text={h} />
-            </p>
-          </li>
-        ))}
-      </ul>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2">
-        {exp.tags.map((tag) => (
-          <span
-            key={tag}
-            className="font-body text-xs font-light tracking-wider px-3 py-1 border border-[#C4B9A8]/60 text-[#1A1A1A]/50"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <div
       ref={ref}
-      className="fade-in-up relative"
-      style={{ transitionDelay: `${index * 0.1}s` }}
+      className="fade-in-up"
+      style={{ transitionDelay: `${index * 0.08}s` }}
     >
-      {/* Mobile: simple stack */}
-      <div className="md:hidden pl-10">
-        {/* Mobile timeline dot */}
+      <div
+        className={`border border-[#C4B9A8]/40 bg-[#FAFAF8] transition-all duration-300 ${
+          expanded ? "border-[#8B7355]/30 shadow-[0_4px_24px_rgba(139,115,85,0.07)]" : "hover:border-[#C4B9A8]/70"
+        }`}
+      >
+        {/* Card header — always visible, clickable */}
+        <button
+          className="w-full text-left p-6 group"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              {/* Accent line */}
+              <div className="w-6 h-0.5 mb-3" style={{ backgroundColor: exp.color }} />
+              <h3 className="font-display text-xl font-light text-[#1A1A1A] leading-tight mb-1">
+                {exp.company}
+              </h3>
+              <p className="font-body text-sm font-light text-[#1A1A1A]/55 mb-3">
+                {exp.role}
+              </p>
+              {/* Tags — always visible */}
+              <div className="flex flex-wrap gap-1.5">
+                {exp.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="font-body text-[10px] font-light tracking-wider px-2.5 py-0.5 border border-[#C4B9A8]/50 text-[#1A1A1A]/45"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: period + location + chevron */}
+            <div className="shrink-0 flex flex-col items-end gap-2">
+              <p className="font-body text-xs tracking-wider uppercase" style={{ color: exp.color }}>
+                {exp.period}
+              </p>
+              <p className="font-body text-xs text-[#1A1A1A]/35">{exp.location}</p>
+              <ChevronDown
+                size={14}
+                className={`text-[#C4B9A8] transition-transform duration-300 mt-1 ${expanded ? "rotate-180" : ""}`}
+              />
+            </div>
+          </div>
+        </button>
+
+        {/* Expandable details */}
         <div
-          className="absolute left-0 top-6 w-3 h-3 rounded-full border-2 border-[#F5F0E8]"
-          style={{ backgroundColor: exp.color }}
-        />
-        {card}
-      </div>
-
-      {/* Desktop: true alternating layout */}
-      <div className="hidden md:grid md:grid-cols-[1fr_2px_1fr] md:gap-0 items-start">
-        {/* Left slot */}
-        <div className={`${isLeft ? "pr-12" : ""}`}>
-          {isLeft && card}
-        </div>
-
-        {/* Center spine + dot + connector */}
-        <div className="relative flex justify-center">
-          <div
-            className="absolute top-6 w-4 h-4 rounded-full border-2 border-[#F5F0E8] -translate-x-1/2 left-1/2 z-10 shadow-[0_0_0_3px] "
-            style={{ backgroundColor: exp.color, boxShadow: `0 0 0 3px ${exp.color}25` }}
-          />
-          {/* Horizontal connector line to card */}
-          {isLeft ? (
-            <div
-              className="absolute top-[1.625rem] right-1/2 w-12 h-px"
-              style={{ backgroundColor: `${exp.color}50` }}
-            />
-          ) : (
-            <div
-              className="absolute top-[1.625rem] left-1/2 w-12 h-px"
-              style={{ backgroundColor: `${exp.color}50` }}
-            />
-          )}
-        </div>
-
-        {/* Right slot */}
-        <div className={`${!isLeft ? "pl-12" : ""}`}>
-          {!isLeft && card}
+          className={`overflow-hidden transition-all duration-400 ease-in-out`}
+          style={{ maxHeight: expanded ? "600px" : "0px" }}
+        >
+          <div className="px-6 pb-6 pt-0">
+            <div className="border-t border-[#C4B9A8]/30 pt-5">
+              <ul className="space-y-3">
+                {exp.highlights.map((h, j) => (
+                  <li key={j} className="flex gap-3">
+                    <span
+                      className="mt-[7px] w-1 h-1 rounded-full shrink-0"
+                      style={{ backgroundColor: exp.color }}
+                    />
+                    <p className="font-body text-sm font-light text-[#1A1A1A]/65 leading-relaxed">
+                      <HighlightText text={h} />
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -206,10 +178,10 @@ export default function ExperienceSection() {
   const headingRef = useScrollReveal();
 
   return (
-    <section id="experience" className="py-28 md:py-36 bg-[#F5F0E8]">
+    <section id="experience" className="py-24 md:py-32 bg-[#F5F0E8]">
       <div className="container">
         {/* Section header */}
-        <div ref={headingRef} className="fade-in-up mb-20">
+        <div ref={headingRef} className="fade-in-up mb-14">
           <p className="section-label mb-4">02 — Experience</p>
           <div className="flex items-end gap-6">
             <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-light text-[#1A1A1A] leading-tight">
@@ -217,20 +189,16 @@ export default function ExperienceSection() {
             </h2>
             <div className="flex-1 h-px bg-[#C4B9A8] mb-3 hidden md:block" />
           </div>
+          <p className="font-body text-sm font-light text-[#1A1A1A]/40 mt-3">
+            Click any card to expand details.
+          </p>
         </div>
 
-        {/* Timeline container */}
-        <div className="relative">
-          {/* Vertical spine — desktop only */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#C4B9A8]/70 hidden md:block -translate-x-1/2" />
-          {/* Vertical spine — mobile */}
-          <div className="absolute left-[5px] top-0 bottom-0 w-px bg-[#C4B9A8]/50 md:hidden" />
-
-          <div className="space-y-16 md:space-y-20">
-            {experiences.map((exp, i) => (
-              <ExperienceCard key={i} exp={exp} isLeft={i % 2 === 0} index={i} />
-            ))}
-          </div>
+        {/* Two-column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {experiences.map((exp, i) => (
+            <ExperienceCard key={i} exp={exp} index={i} />
+          ))}
         </div>
       </div>
     </section>

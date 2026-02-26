@@ -72,3 +72,15 @@
 - [x] Skills: Reduced tag size (text-xs, smaller padding)
 - [x] Footer: Simplified to Blog/GitHub/Scholar + AI · Systems · Computational Biology tagline
 - [x] Design: Forest green in Research Featured badge + GitHub section description
+
+## Phase 6 — Hero Simplification + Exploring Section
+
+- [x] Hero: Remove network illustration, simplify to clean text-only layout
+- [x] Hero: Reduce section height (min-h-[82vh], compact padding)
+- [x] About: Remove "Future Research Directions" cards from AboutSection
+- [x] New: Create standalone ExploringSection component (curiosity-driven, not research commitments)
+- [x] Exploring: 8 topics including BCI, GRN, bioprinting, longevity, neuromorphic, synthetic bio, quantum ML, space AI
+- [x] Navbar: Add "Exploring" nav link
+- [x] Home: Insert ExploringSection between Skills and GitHub sections
+- [x] Experience: Compact two-column grid layout, no staggered offset
+- [x] Experience: Collapse job details by default, expand on click

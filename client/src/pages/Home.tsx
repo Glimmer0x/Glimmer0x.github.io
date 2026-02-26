@@ -13,6 +13,7 @@ import ResearchSection from "@/components/ResearchSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import GitHubSection from "@/components/GitHubSection";
+import ExploringSection from "@/components/ExploringSection";
 import BlogPreviewSection from "@/components/BlogPreviewSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -28,6 +29,7 @@ export default function Home() {
       <ResearchSection />
       <ProjectsSection />
       <SkillsSection />
+      <ExploringSection />
       <GitHubSection />
       <BlogPreviewSection />
       <ContactSection />

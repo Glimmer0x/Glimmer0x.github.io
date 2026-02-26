@@ -120,50 +120,7 @@ export default function AboutSection() {
               ))}
             </div>
 
-            {/* Future Research Interests */}
-            <div className="mt-2 p-6 border border-[#C4B9A8]/40 bg-[#F5F0E8]/40" style={{ borderLeftWidth: '3px', borderLeftColor: 'oklch(0.32 0.09 140)' }}>
-              <p className="font-body text-xs tracking-[0.2em] uppercase mb-4" style={{ color: 'oklch(0.32 0.09 140)' }}>Future Research Directions</p>
-              <p className="font-body text-sm font-light text-[#1A1A1A]/60 leading-relaxed mb-5">
-                Beyond current work in federated learning and AI systems, I am drawn to the frontier
-                where computation meets biology — particularly in areas where data-driven methods
-                can unlock new understanding of life itself.
-              </p>
-              <div className="space-y-5">
-                {[
-                  {
-                    title: "Gene Regulatory Networks",
-                    desc: "Applying graph neural networks and causal inference to model transcription factor interactions and predict cellular state transitions at scale.",
-                    tag: "Computational Biology",
-                  },
-                  {
-                    title: "Bioprinting & Organ Engineering",
-                    desc: "Exploring AI-driven optimization of bioink formulations and scaffold architectures to accelerate the path toward functional tissue fabrication.",
-                    tag: "Biofabrication",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="group">
-                    <div className="flex items-start gap-3">
-                      <div
-                        className="w-1.5 h-1.5 rounded-full mt-2 shrink-0 transition-opacity duration-300 opacity-60 group-hover:opacity-100"
-                        style={{ backgroundColor: 'oklch(0.32 0.09 140)' }}
-                      />
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <h4 className="font-display text-base font-light text-[#1A1A1A]">{item.title}</h4>
-                          <span
-                            className="font-body text-[10px] tracking-[0.12em] uppercase px-2 py-0.5 border"
-                            style={{ color: 'oklch(0.32 0.09 140)', borderColor: 'oklch(0.32 0.09 140 / 0.3)' }}
-                          >
-                            {item.tag}
-                          </span>
-                        </div>
-                        <p className="font-body text-xs font-light text-[#1A1A1A]/55 leading-relaxed">{item.desc}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+
           </div>
 
           {/* Right: Education Timeline */}

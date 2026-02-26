@@ -87,3 +87,12 @@
 
 ## Phase 7 — Experience Layout Refinement
 - [x] Experience: Restored alternating timeline layout with compact spacing (space-y-4, py-20)
+
+## Phase 8 — Information Architecture Restructure
+- [x] Reorder page sections: Hero → About → Blog → Research → Projects → Timeline → Exploring → GitHub → Contact
+- [x] Remove SkillsSection from Home.tsx
+- [x] Remove Skills nav item from Navbar
+- [x] Merge Education + Experience into unified TimelineSection
+- [x] Education entries: minimal (school + degree + dates + note only)
+- [x] Fix timeline dot alignment (centered on spine, work=3px dot, edu=2px muted dot)
+- [x] Reorder Navbar: Blog → Research → Projects → Timeline → Exploring → About → Contact

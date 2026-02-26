@@ -8,12 +8,12 @@ import { useState, useEffect } from "react";
 import { Menu, X, Github } from "lucide-react";
 
 const navItems = [
-  { label: "About", href: "#about", sectionId: "about" },
-  { label: "Experience", href: "#experience", sectionId: "experience" },
+  { label: "Blog", href: "/blog", sectionId: "" },
   { label: "Research", href: "#research", sectionId: "research" },
   { label: "Projects", href: "#projects", sectionId: "projects" },
+  { label: "Timeline", href: "#timeline", sectionId: "timeline" },
   { label: "Exploring", href: "#exploring", sectionId: "exploring" },
-  { label: "Blog", href: "/blog", sectionId: "" },
+  { label: "About", href: "#about", sectionId: "about" },
   { label: "Contact", href: "#contact", sectionId: "contact" },
 ];
 

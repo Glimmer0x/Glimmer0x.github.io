@@ -127,14 +127,14 @@ export default function AboutSection() {
           <div ref={eduRef} className="fade-in-up" style={{ transitionDelay: "0.15s" }}>
             <p className="section-label mb-8">Education</p>
             <div className="relative">
-              {/* Vertical line */}
+              {/* Vertical line: left-0, width 1px */}
               <div className="absolute left-0 top-2 bottom-2 w-px bg-[#C4B9A8]" />
 
               <div className="space-y-10 pl-8">
                 {education.map((edu, i) => (
                   <div key={i} className="relative">
-                    {/* Dot */}
-                    <div className="absolute -left-8 top-1.5 w-2 h-2 rounded-full bg-[#8B7355]" />
+                    {/* Dot: -left-8 positions dot at the spine (pl-8 = 32px), -translate-x-1/2 centers it exactly on the 1px spine */}
+                    <div className="absolute -left-8 top-1.5 w-2 h-2 rounded-full bg-[#8B7355] -translate-x-1/2" />
 
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
                       <h3 className="font-display text-xl font-light text-[#1A1A1A]">

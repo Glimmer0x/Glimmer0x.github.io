@@ -104,3 +104,6 @@
 ## Phase 10 — Timeline Dot Unification
 - [x] Unify Education dot rendering: reuse exact same dot column structure as Work (same pt offset, same mx-auto centering)
 - [x] Education card: simplify to inline text style (no left-border card), just school/degree/period as plain text beside the dot
+
+## Phase 11 — About Section Education Dot Fix
+- [x] Fix AboutSection Education dot: -left-8 -translate-x-1/2 → dot center at x=686, spine center at x=686.5 (0.5px sub-pixel, visually perfect)

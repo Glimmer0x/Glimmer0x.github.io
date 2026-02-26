@@ -100,3 +100,7 @@
 ## Phase 9 — Timeline Dot Alignment Fix
 - [x] Refactor TimelineSection to use CSS Grid 3-column layout (1fr 32px 1fr) for precise dot centering
 - [x] Verified via DevTools: all 6 dots at x=638, spine at x=638 (perfect alignment)
+
+## Phase 10 — Timeline Dot Unification
+- [x] Unify Education dot rendering: reuse exact same dot column structure as Work (same pt offset, same mx-auto centering)
+- [x] Education card: simplify to inline text style (no left-border card), just school/degree/period as plain text beside the dot

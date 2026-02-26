@@ -84,3 +84,6 @@
 - [x] Home: Insert ExploringSection between Skills and GitHub sections
 - [x] Experience: Compact two-column grid layout, no staggered offset
 - [x] Experience: Collapse job details by default, expand on click
+
+## Phase 7 — Experience Layout Refinement
+- [x] Experience: Restored alternating timeline layout with compact spacing (space-y-4, py-20)

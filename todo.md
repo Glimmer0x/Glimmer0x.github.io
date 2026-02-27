@@ -127,3 +127,8 @@
 - [x] Add 404.html to client/public for SPA routing support
 - [x] outDir stays as dist/public (GitHub Actions uploads from ./dist/public)
 - [x] Verify pnpm build produces correct static output (2153 modules, 404.html in dist/public)
+
+## Phase 15 — SEO & Open Graph
+- [x] Generate og:image social preview (1200x630)
+- [x] Upload og:image to CDN (CloudFront)
+- [x] Add complete SEO meta tags to index.html: og:title, og:description, og:image, og:url, og:type, twitter:card, twitter:title, twitter:description, twitter:image, canonical link, robots

@@ -137,3 +137,8 @@
 - [x] Generate LL monogram favicon (512x512 PNG)
 - [x] Convert to .ico (16/32/48/64px) and add apple-touch-icon (180x180)
 - [x] Update index.html to reference favicon (ico, 32x32 png, 16x16 png, apple-touch-icon)
+
+## Phase 17 — Sitemap & Robots
+- [x] Analyze route structure and create sitemap.xml in client/public/ (homepage + blog index + 3 blog posts)
+- [x] Create robots.txt with Sitemap reference pointing to https://glimmer0x.github.io/sitemap.xml
+- [x] Verified: sitemap.xml (1.3KB) and robots.txt (73B) in dist/public/ after build

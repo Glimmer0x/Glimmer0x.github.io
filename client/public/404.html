@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // GitHub Pages SPA redirect trick
+      // Redirects 404s back to index.html with the path encoded as a query param
+      // so the React router can handle it client-side.
+      // Save the full path and redirect to index.html
+      // The index.html script will restore the path using history.replaceState
+      sessionStorage.redirect = location.href;
+      var l = window.location;
+      l.replace(
+        l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") + "/"
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -7,6 +7,16 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Liangxi Liu — Personal Website</title>
+    <!-- GitHub Pages SPA routing: restore path from 404.html redirect -->
+    <script>
+      (function () {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <meta name="description" content="Liangxi Liu's personal website — showcasing work, experience, and thoughts." />
     <!-- Google Fonts: Cormorant Garamond + Jost -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,10 +27,7 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <!-- Analytics: add your own tracking script here if needed -->
   </body>
 
 </html>

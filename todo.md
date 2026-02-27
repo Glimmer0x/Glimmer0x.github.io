@@ -112,3 +112,18 @@
 - [x] Fix mobile Timeline: add continuous left spine + dot for every entry (work + education)
 - [x] Mobile: use relative container + absolute left spine, each row has absolute dot centered on spine
 - [x] Verified via 5 reviews: spine visible, dots aligned, no gaps between entries
+
+## Phase 13 — Static Site Refactor
+- [ ] Audit all tRPC calls and backend dependencies across all components
+- [ ] Migrate blog/research/projects data to static TS data files in client/src/data/
+- [ ] Remove tRPC calls, replace with direct static data imports
+- [ ] Contact section: replace form with email display
+- [ ] Remove server/ dependencies from client code, update vite.config.ts for pure static build
+- [ ] Verify `pnpm build` succeeds with no server-side errors
+- [ ] Test all pages: blog, research, projects, timeline, about, contact
+
+## Phase 14 — GitHub Pages Deployment
+- [x] Add GitHub Actions workflow: .github/workflows/deploy.yml (build + deploy to gh-pages)
+- [x] Add 404.html to client/public for SPA routing support
+- [x] outDir stays as dist/public (GitHub Actions uploads from ./dist/public)
+- [x] Verify pnpm build produces correct static output (2153 modules, 404.html in dist/public)

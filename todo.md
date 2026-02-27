@@ -142,3 +142,8 @@
 - [x] Analyze route structure and create sitemap.xml in client/public/ (homepage + blog index + 3 blog posts)
 - [x] Create robots.txt with Sitemap reference pointing to https://glimmer0x.github.io/sitemap.xml
 - [x] Verified: sitemap.xml (1.3KB) and robots.txt (73B) in dist/public/ after build
+
+## Phase 18 — 404 Error Page
+- [x] Review existing NotFound page and routing
+- [x] Design and implement styled 404 page matching site aesthetic (large serif 404 watermark + nav cards)
+- [x] Verify page renders correctly for unknown routes (screenshot confirmed)

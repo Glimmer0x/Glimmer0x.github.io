@@ -132,3 +132,8 @@
 - [x] Generate og:image social preview (1200x630)
 - [x] Upload og:image to CDN (CloudFront)
 - [x] Add complete SEO meta tags to index.html: og:title, og:description, og:image, og:url, og:type, twitter:card, twitter:title, twitter:description, twitter:image, canonical link, robots
+
+## Phase 16 — Favicon
+- [x] Generate LL monogram favicon (512x512 PNG)
+- [x] Convert to .ico (16/32/48/64px) and add apple-touch-icon (180x180)
+- [x] Update index.html to reference favicon (ico, 32x32 png, 16x16 png, apple-touch-icon)

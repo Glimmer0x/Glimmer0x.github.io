@@ -31,8 +31,8 @@ const contactLinks = [
   {
     icon: <Mail size={18} />,
     label: "Email",
-    value: "liu.liangx@northeastern.edu",
-    href: "mailto:liu.liangx@northeastern.edu",
+    value: "liangxiliu.work@gmail.com",
+    href: "mailto:liangxiliu.work@gmail.com",
   },
   {
     icon: <Linkedin size={18} />,
@@ -92,7 +92,7 @@ export default function ContactSection() {
 
             {/* Primary CTA */}
             <a
-              href="mailto:liu.liangx@northeastern.edu"
+              href="mailto:liangxiliu.work@gmail.com"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#1A1A1A] text-[#FAFAF8] font-body text-sm font-light tracking-[0.12em] uppercase hover:bg-[#8B7355] transition-colors duration-500 group"
             >
               <Mail size={16} />

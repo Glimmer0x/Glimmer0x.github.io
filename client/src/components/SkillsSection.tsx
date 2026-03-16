@@ -29,27 +29,27 @@ const skillGroups = [
   {
     category: "Languages",
     color: "#8B7355",
-    skills: ["Python", "Go", "Rust", "Java", "TypeScript", "JavaScript", "Kotlin", "Swift", "C++", "Solidity", "Shell", "LaTeX"],
+    skills: ["Python", "Go", "Rust", "Java", "TypeScript", "JavaScript", "C++"],
   },
   {
     category: "AI / ML",
     color: "#6B8B7A",
-    skills: ["PyTorch", "TensorFlow", "Scikit-Learn", "Federated Learning", "Bayesian Inference", "Transformer", "NeRF", "Multimodal AI"],
+    skills: ["PyTorch", "TensorFlow", "Scikit-Learn", "Federated Learning", "Multimodal Systems", "Ranking & Retrieval", "Tool Orchestration", "Structured Generation", "SGLang", "LoRA Fine-tuning"],
   },
   {
     category: "Backend & Frameworks",
     color: "#7A6B8B",
-    skills: ["Spring", "Node.js", "Django", "Flask", "Gin", "FastAPI", "REST API", "Spark", "Flink"],
+    skills: ["Node.js", "REST API", "tRPC", "gRPC"],
   },
   {
     category: "Databases",
     color: "#7A8B6B",
-    skills: ["MySQL", "MongoDB", "DynamoDB", "Neptune", "ElasticSearch", "Redis"],
+    skills: ["MySQL", "DynamoDB", "Neptune", "ElasticSearch"],
   },
   {
     category: "Cloud & DevOps",
     color: "#8B6B7A",
-    skills: ["AWS (S3, Lambda, RDS, Fargate, Batch)", "Kubernetes", "Docker", "Terraform", "Jenkins", "Kafka", "LocalStack"],
+    skills: ["AWS (S3, Lambda, RDS, Fargate, Batch)", "Kubernetes", "Docker", "Terraform", "Kafka"],
   },
 ];
 

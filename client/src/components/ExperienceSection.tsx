@@ -31,17 +31,17 @@ const experiences = [
   {
     company: "OKBL USA Technology Inc.",
     location: "San Jose, US",
-    role: "Software Engineer II",
+    role: "Software Engineer II (promoted from SWE I within 7 months)",
     period: "Jun. 2024 – Present",
     color: "#8B7355",
     highlights: [
       "Spearheaded fuzzy search initiative, increasing search hit rates by **42.1%** and boosting user retention by **1.7%** for **20M+ users**",
       "Developed novel Two-Stage Ranking fuzzy search algorithm, reducing time complexity from **O(N²) to O(N log N)** and space from **O(N²) to O(N)**",
-      "Engineered zero-shot document classifier for KYC verification using prompt-based multimodal embeddings",
-      "Raised KYC approval rate by **7.1%** via on-device document detection & rectification model",
+      "Built agentic workflow using **SGLang** structured generation + **LoRA fine-tuned** vision models for automated document processing",
+      "Trained lightweight KYC document detection model using GAN-generated synthetic data, reduced model size to **~2 MB** via quantization; increased Australia approval rate by **4.2%**",
       "Migrated all on-device services to **Rust**, boosting response speed by **56%**",
     ],
-    tags: ["Rust", "Search Algorithms", "ML", "KYC", "Multimodal AI"],
+    tags: ["Rust", "Search Algorithms", "SGLang", "LoRA", "KYC", "Multimodal AI"],
   },
   {
     company: "Pond Global Ltd.",

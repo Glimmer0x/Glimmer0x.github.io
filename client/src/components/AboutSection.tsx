@@ -14,7 +14,7 @@ const education = [
   {
     school: "Northeastern University",
     location: "Seattle, US",
-    degree: "M.S. in Computer Software Engineering",
+    degree: "M.S. in Software Engineering",
     period: "2022 – 2024",
     note: "GPA 3.7/4.0",
     highlight: "Cloud Computing · Web Development · UX Engineering",

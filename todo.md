@@ -147,3 +147,12 @@
 - [x] Review existing NotFound page and routing
 - [x] Design and implement styled 404 page matching site aesthetic (large serif 404 watermark + nav cards)
 - [x] Verify page renders correctly for unknown routes (screenshot confirmed)
+
+## Phase 19 — Resume Content Update
+- [x] Fix OKBL KYC approval rate: 7.1% → 4.2% (Australia) in ExperienceSection + TimelineSection
+- [x] Add OKBL promotion note: "promoted from SWE I within 7 months"
+- [x] Add Agentic Workflow (SGLang + LoRA) to OKBL highlights
+- [x] Fix Northeastern degree: "Computer Software Engineering" → "Software Engineering" in About + Timeline
+- [x] Trim Skills: removed Kotlin, Swift, Solidity, Shell, LaTeX, Spring, Django, Flask, Gin, FastAPI, Spark, Flink, MongoDB, Redis, Jenkins, LocalStack
+- [x] Update Skills ML/AI: added Multimodal Systems, Ranking & Retrieval, Tool Orchestration, Structured Generation, SGLang, LoRA Fine-tuning
+- [x] Update Contact email: liu.liangx@northeastern.edu → liangxiliu.work@gmail.com

@@ -35,25 +35,4 @@
     <priority>0.8</priority>
   </url>
 
-  <url>
-    <loc>https://glimmer0x.github.io/blog/federated-learning-intro</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://glimmer0x.github.io/blog/fuzzy-search-algorithm</loc>
-    <lastmod>2024-11-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://glimmer0x.github.io/blog/blockchain-ai-fraud-detection</loc>
-    <lastmod>2024-06-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
 </urlset>

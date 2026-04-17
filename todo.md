@@ -156,3 +156,10 @@
 - [x] Trim Skills: removed Kotlin, Swift, Solidity, Shell, LaTeX, Spring, Django, Flask, Gin, FastAPI, Spark, Flink, MongoDB, Redis, Jenkins, LocalStack
 - [x] Update Skills ML/AI: added Multimodal Systems, Ranking & Retrieval, Tool Orchestration, Structured Generation, SGLang, LoRA Fine-tuning
 - [x] Update Contact email: liu.liangx@northeastern.edu → liangxiliu.work@gmail.com
+
+## Phase 20 — 博客文章：Agent 协作平台安全系列
+- [x] 写入第一篇博客：agent-platform-security-taxonomy.md（六类威胁分类框架）
+- [x] 写入第二篇博客：agent-platform-security-solutions.md（A-H 八个防御方案）
+- [x] 第一篇末尾引用第二篇（See also 链接）
+- [x] 第二篇开头引用第一篇（blockquote 续篇说明）
+- [x] 更新 sitemap.xml 添加两篇新博客 URL
